@@ -1,27 +1,21 @@
-let inputTag = document.getElementsByTagName("input");
-let buttonArray = document.getElementsByTagName("button");
+console.clear();
 
-let inputId = inputTag[0];
-let inputPassword = inputTag[1];
+const wordContainerEl = document.querySelector("[data-word]");
+const word = wordContainerEl.getAttribute("data-word");
+const wordRepeatTimes = wordContainerEl.getAttribute("data-word-repeat");
+const textColorsArray = wordContainerEl.getAttribute("data-text-colors").split(",");
 
-let ordinaryButton = buttonArray[0];
-let facebookLoginButton = buttonArray[1];
-
-inputPassword.addEventListener("keyup", () => {
-    if(inputId.value){
-        ordinaryButton.classList.remove("unactivatedLoginColor");
-        ordinaryButton.classList.add("activatedLoginColor");
+for (let i = 0; i < wordRepeatTimes; i++) {
+    const wordEl = document.createElement("span");
+    wordEl.className = "word";
+    wordEl.style.setProperty("--word-index", i);
+    wordEl.style.setProperty("--color", textColorsArray[i]);
+    for (let j = 0; j < word.length; j++) {
+        const charEl = document.createElement("span");
+        charEl.className = "char";
+        charEl.style.setProperty("--char-index", j);
+        charEl.innerHTML = word[j];
+        wordEl.appendChild(charEl);
     }
-    if(!inputPassword.value){
-        ordinaryButton.classList.remove("activatedLoginColor");
-        ordinaryButton.classList.add("unactivatedLoginColor");
-    }
-})
-
-ordinaryButton.addEventListener('click', () => {
-    if(inputId.value === "devzunky" && inputPassword.value === "junkyuu"){
-        alert("로그인 성공");
-    } else {
-        alert("로그인 실패");
-    }
-})
+    wordContainerEl.appendChild(wordEl);
+}
