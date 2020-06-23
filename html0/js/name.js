@@ -6,7 +6,7 @@ const wordRepeatTimes = wordContainerEl.getAttribute("data-word-repeat");
 const textColorsArray = wordContainerEl.getAttribute("data-text-colors").split(",");
 
 for (let i = 0; i < wordRepeatTimes; i++) {
-    const wordEl = document.createElement("span");
+    const wordEl = document.createElement("span");  
     wordEl.className = "word";
     wordEl.style.setProperty("--word-index", i);
     wordEl.style.setProperty("--color", textColorsArray[i]);
